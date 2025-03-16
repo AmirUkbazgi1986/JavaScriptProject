@@ -22,62 +22,60 @@ function getComputerChoice() {
   }
 }
 
+// 2. creating getHumanChoice function
+
 function getHumanChoice(value) {
   // const value = prompt("enter your favorite").toLowerCase();
   return value;
 }
 
+// 3. creating a function which checks human choice
+
+function checkHumanChoice(humanChoice, computerChoice) {
+  if (humanScore < 5) {
+    textRes.textContent = `You win. ${humanChoice} beats ${computerChoice} `;
+    scoreHum.textContent = `${humanScore}`;
+  } else {
+    textRes.textContent = `Congratulation! YOU WIN THE GAME! `;
+    scoreCom.textContent = "0";
+    scoreHum.textContent = "0";
+    humanScore = 0;
+    computerScore = 0;
+  }
+}
+
+//  4. creating a function which checks computer choice
+
+function checkComupterChoice(humanChoice, computerChoice) {
+  if (computerScore < 5) {
+    textRes.textContent = `You lose. ${computerChoice} beats ${humanChoice} Please try! `;
+    scoreCom.textContent = `${computerScore}`;
+  } else {
+    textRes.textContent = `Bad luck. YOU LOST THE GAME!`;
+
+    scoreCom.textContent = "0";
+    scoreHum.textContent = "0";
+    humanScore = 0;
+    computerScore = 0;
+  }
+}
+
+// 5. creating a function which compares human choice and computer choice
+
 function playRound(humanChoice, computerChoice) {
   console.log(humanChoice, computerChoice);
   if (humanChoice === "Rock" && computerChoice === "Scissor") {
     humanScore++;
-    if (humanScore < 5) {
-      textRes.textContent = `You win. ${humanChoice} beats ${computerChoice} `;
-      scoreHum.textContent = `${humanScore}`;
-    } else {
-      textRes.textContent = `Congratulation! YOU WIN THE GAME! `;
-      scoreCom.textContent = "0";
-      scoreHum.textContent = "0";
-      humanScore = 0;
-      computerScore = 0;
-    }
+    checkHumanChoice(humanChoice, computerChoice);
   } else if (humanChoice === "Scissor" && computerChoice === "Paper") {
     humanScore++;
-    if (humanScore < 5) {
-      textRes.textContent = `You win. ${humanChoice} beats ${computerChoice} `;
-      scoreHum.textContent = `${humanScore}`;
-    } else {
-      textRes.textContent = `Congratulation! YOU WIN THE GAME! `;
-      scoreCom.textContent = "0";
-      scoreHum.textContent = "0";
-      humanScore = 0;
-      computerScore = 0;
-    }
+    checkHumanChoice(humanChoice, computerChoice);
   } else if (humanChoice === "Paper" && computerChoice === "Rock") {
     humanScore++;
-    if (humanScore < 5) {
-      textRes.textContent = `You win. ${humanChoice} beats ${computerChoice} `;
-      scoreHum.textContent = `${humanScore}`;
-    } else {
-      textRes.textContent = `Congratulation! YOU WIN THE GAME! `;
-      scoreCom.textContent = "0";
-      scoreHum.textContent = "0";
-      humanScore = 0;
-      computerScore = 0;
-    }
+    checkHumanChoice(humanChoice, computerChoice);
   } else {
     computerScore++;
-    if (computerScore < 5) {
-      textRes.textContent = `You lose. ${computerChoice} beats ${humanChoice} Please try! `;
-      scoreCom.textContent = `${computerScore}`;
-    } else {
-      textRes.textContent = `Bad luck. YOU LOST THE GAME!`;
-
-      scoreCom.textContent = "0";
-      scoreHum.textContent = "0";
-      humanScore = 0;
-      computerScore = 0;
-    }
+    checkComupterChoice(humanChoice, computerChoice);
   }
 }
 
@@ -86,6 +84,9 @@ function playRound(humanChoice, computerChoice) {
 //     round();
 //   }
 // }
+// playGame(playRound);
+
+//  6. creating a loop to attach event listener to each button
 
 for (let i = 0; i < buttonEl.length; i++) {
   // console.log(buttonEl[i]);
@@ -107,8 +108,3 @@ for (let i = 0; i < buttonEl.length; i++) {
     }
   });
 }
-
-// playGame(playRound);
-// buttonEl.addEventListener("click", function () {
-//   playGame(playRound);
-// });
